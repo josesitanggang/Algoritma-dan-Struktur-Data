@@ -9,13 +9,18 @@ typedef struct tnode{
     Bintree right;
 } Node;
 
+#define left(node)  (node)->left
+#define right(node) (node)->right
+#define root(node)  (node)->key
+#define empty(node) (node==NULL)
 
 Bintree alloc(int x){
     Bintree new_node = (Bintree)malloc(sizeof(Node));
-    if(new_node==NULL) return NULL;
-    new_node->key = x;
-    new_node->left = NULL;
-    new_node->right = NULL;
+    if(empty(new_node)) return NULL;
+    root(new_node) = x;
+    left(new_node) = NULL;
+    right(new_node) = NULL;
+    return new_node;
 } 
 
 void makeBintree(Bintree *T){
@@ -24,23 +29,23 @@ void makeBintree(Bintree *T){
 
 
 void preorder(Bintree t){
-    if(t==NULL) return;
-    preorder(t->left);
-    cout<<t->key<<" ";
-    preorder(t->right);
+    if(empty(t)) return;
+    preorder(left(t));
+    cout<<root(t)<<" ";
+    preorder(right(t));
 }
 
 void insert(Bintree *node,int x){
-    if((*node)==NULL) {
-        (*node)=alloc(x);
+    if(empty(*node)) {
+        *node=alloc(x);
         return;
     }
-    if((*node)->key==x) {
+    if(root(*node)==x) {
         return;
     }
     
-    if(x<((*node)->key)) insert(&((*node)->left),x);
-    else insert(&((*node)->right),x);
+    if(x<root(*node)) insert(&left(*node),x);
+    else insert(&right(*node),x);
 
 }
 
