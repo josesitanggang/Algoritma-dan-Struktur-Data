@@ -27,7 +27,6 @@ void makeBintree(Bintree *T){
     *T = NULL;
 }
 
-
 void preorder(Bintree t){
     if(empty(t)) return;
     preorder(left(t));
@@ -49,6 +48,16 @@ void insert(Bintree *node,int x){
 
 }
 
+Bintree search(Bintree T,int x){
+    
+    if(!empty(T)){
+        if(x==root(T)) return T;
+        else if(x<root(T)) return search(left(T),x);
+        else return search(right(T),x);
+    }
+     return NULL;
+    
+}
 
 int main(){
     Bintree root;
@@ -61,7 +70,9 @@ int main(){
     insert(&root, 70); 
     insert(&root, 60); 
     insert(&root, 80);
-    preorder(root);
+
+    cout<<search(root,60);
+    // preorder(root);
     return 0;
 }
 
