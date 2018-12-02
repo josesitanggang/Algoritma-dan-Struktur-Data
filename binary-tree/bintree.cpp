@@ -59,6 +59,16 @@ Bintree search(Bintree T,int x){
     
 }
 
+int height(Bintree T){
+    if(empty(T)) return 0;
+    else return max((1+height(left(T))),(1+height(right(T))));
+}
+
+int totalNode(Bintree T){
+    if(empty(T)) return 0;
+    else return 1+totalNode(left(T)) + totalNode(right(T));
+}
+
 int main(){
     Bintree root;
     makeBintree(&root);
@@ -71,7 +81,9 @@ int main(){
     insert(&root, 60); 
     insert(&root, 80);
 
-    cout<<search(root,60);
+    // cout<<totalNode(root);
+    // cout<<height(root);
+    // cout<<search(root,60);
     // preorder(root);
     return 0;
 }
