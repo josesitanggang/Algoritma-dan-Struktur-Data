@@ -69,6 +69,31 @@ int totalNode(Bintree T){
     else return 1+totalNode(left(T)) + totalNode(right(T));
 }
 
+void addLeafMost(Bintree *T, Bintree *L){
+    if(empty(left(*T))) left(*T) = *L;
+    else addLeafMost(&left(*T),L);
+}
+
+void delNode(Bintree *T,int x){
+    if(empty(*T)) return;
+    
+    if(x==root(*T)){
+        if(empty(left(*T)) && empty(right(*T))) {
+            *T = NULL;
+            return;
+        }
+
+        Bintree temp = *T;
+        *T = right(*T);
+        addLeafMost(T,&left(temp));
+        temp = NULL;
+    
+    }
+    else if(x>root(*T)) delNode(&right(*T),x);
+    else delNode(&left(*T),x);
+    
+}
+
 int main(){
     Bintree root;
     makeBintree(&root);
@@ -80,11 +105,13 @@ int main(){
     insert(&root, 70); 
     insert(&root, 60); 
     insert(&root, 80);
-
     // cout<<totalNode(root);
     // cout<<height(root);
     // cout<<search(root,60);
     // preorder(root);
+    // delNode(&root,30);
+    // cout<<"\n";
+    preorder(root);
     return 0;
 }
 
