@@ -1,5 +1,6 @@
 #include <iostream>
 #include <stdlib.h>
+#include<string>
 using namespace std;
 
 typedef int info;
@@ -95,6 +96,22 @@ void delNode(Bintree *T,info x){
     
 }
 
+string genchar(string x, int n){
+    string y ="";
+    for(int i=0;i<n;i++){
+        y+=x;
+    }
+    return y;
+}
+
+void draw(Bintree T,int i=1){
+    if(!empty(T)){
+        printf("%s %d   lev.(%d)\n",genchar("|_",i).c_str(),root(T),i-1);
+        draw(left(T),i+1);
+        draw(right(T),i+1);
+    }
+}
+
 int main(){
     Bintree root;
     makeBintree(&root);
@@ -112,7 +129,8 @@ int main(){
     // preorder(root);
     // delNode(&root,30);
     // cout<<"\n";
-    preorder(root);
+    // preorder(root);
+    draw(root);
     return 0;
 }
 
