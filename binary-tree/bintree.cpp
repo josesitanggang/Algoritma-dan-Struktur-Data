@@ -2,9 +2,10 @@
 #include <stdlib.h>
 using namespace std;
 
+typedef int info;
 typedef struct tnode* Bintree;
 typedef struct tnode{
-    int key;
+    info key;
     Bintree left;
     Bintree right;
 } Node;
@@ -14,7 +15,7 @@ typedef struct tnode{
 #define root(node)  (node)->key
 #define empty(node) (node==NULL)
 
-Bintree alloc(int x){
+Bintree alloc(info x){
     Bintree new_node = (Bintree)malloc(sizeof(Node));
     if(empty(new_node)) return NULL;
     root(new_node) = x;
@@ -34,7 +35,7 @@ void preorder(Bintree t){
     preorder(right(t));
 }
 
-void insert(Bintree *node,int x){
+void insert(Bintree *node,info x){
     if(empty(*node)) {
         *node=alloc(x);
         return;
@@ -48,7 +49,7 @@ void insert(Bintree *node,int x){
 
 }
 
-Bintree search(Bintree T,int x){
+Bintree search(Bintree T,info x){
     
     if(!empty(T)){
         if(x==root(T)) return T;
@@ -74,7 +75,7 @@ void addLeafMost(Bintree *T, Bintree *L){
     else addLeafMost(&left(*T),L);
 }
 
-void delNode(Bintree *T,int x){
+void delNode(Bintree *T,info x){
     if(empty(*T)) return;
     
     if(x==root(*T)){
