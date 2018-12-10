@@ -31,9 +31,23 @@ void makeBintree(Bintree *T){
 
 void preorder(Bintree t){
     if(empty(t)) return;
-    preorder(left(t));
     cout<<root(t)<<" ";
+    preorder(left(t));
     preorder(right(t));
+}
+
+void inorder(Bintree t){
+    if(empty(t)) return;
+    inorder(left(t));
+    cout<<root(t)<<" ";
+    inorder(right(t));
+}
+
+void postorder(Bintree t){
+    if(empty(t)) return;
+    postorder(left(t));
+    postorder(right(t));
+    cout<<root(t)<<" ";
 }
 
 void insert(Bintree *node,info x){
@@ -45,8 +59,10 @@ void insert(Bintree *node,info x){
         return;
     }
     
-    if(x<root(*node)) insert(&left(*node),x);
-    else insert(&right(*node),x);
+    if(x<root(*node)) 
+        insert(&left(*node),x);
+    else
+     insert(&right(*node),x);
 
 }
 
@@ -98,9 +114,7 @@ void delNode(Bintree *T,info x){
 
 string genchar(string x, int n){
     string y ="";
-    for(int i=0;i<n;i++){
-        y+=x;
-    }
+    for(int i=0;i<n;i++) y+=x;
     return y;
 }
 
@@ -127,10 +141,12 @@ int main(){
     // cout<<height(root);
     // cout<<search(root,60);
     // preorder(root);
-    // delNode(&root,30);
+    delNode(&root,50);
     // cout<<"\n";
-    // preorder(root);
-    draw(root);
+    preorder(root);
+    // inorder(root);
+    // postorder(root);
+    // draw(root);
     return 0;
 }
 

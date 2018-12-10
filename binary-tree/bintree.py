@@ -11,7 +11,7 @@ class Tree:
             if(key<self.root):
                 self.left = Tree.add(self.left,key)
             elif (key>self.root):
-                self.right = Tree.add(self.right,key)
+                self.right = Tree.add(self.right,key)            
         return self
 
     def preorder(self):
