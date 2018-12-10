@@ -1,5 +1,5 @@
 #include <iostream>
-#include "bintree.h"
+#include "cpplib/bintree.h"
 
 int main(){
     Bintree root;
@@ -18,7 +18,7 @@ int main(){
     // preorder(root);
     delNode(&root,50);
     // cout<<"\n";
-    preorder(root);
+    // preorder(root);
     // inorder(root);
     // postorder(root);
     draw(root);
